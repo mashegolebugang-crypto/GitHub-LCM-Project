@@ -1,0 +1,28 @@
+
+# Fixed exchange rates (you can update these)
+exchange_rates = {
+    "USD": 18.10,   # 1 USD = 18.10 ZAR
+    "EUR": 19.80,   # 1 EUR = 19.80 ZAR
+    "GBP": 23.50,   # 1 GBP = 23.50 ZAR
+    "ZAR": 1        # South African Rand (base)
+}
+
+print("---- Simple Currency Converter ----")
+print("Available currencies: USD, EUR, GBP, ZAR")
+
+# Input from user
+from_currency = input("Convert FROM (currency code): ").upper()
+to_currency = input("Convert TO (currency code): ").upper()
+amount = float(input("Enter amount: "))
+
+# Check if codes exist
+if from_currency in exchange_rates and to_currency in exchange_rates:
+    # Convert amount to ZAR first
+    amount_in_zar = amount * exchange_rates[from_currency]
+
+    # Convert from ZAR to target currency
+    converted_amount = amount_in_zar / exchange_rates[to_currency]
+
+    print(f"\n{amount} {from_currency} = {converted_amount:.2f} {to_currency}")
+else:
+    print("Invalid currency code entered.")

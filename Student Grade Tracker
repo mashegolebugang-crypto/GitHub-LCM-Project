@@ -1,0 +1,70 @@
+students = {}
+
+def add_student(name):
+    if name in students:
+        print("Student already exists!")
+    else:
+        students[name] = []
+        print(f"{name} added successfully.")
+
+def add_grade(name, grade):
+    if name not in students:
+        print("Student not found!")
+    else:
+        students[name].append(grade)
+        print(f"Grade {grade} added for {name}.")
+
+def show_student(name):
+    if name not in students:
+        print("Student not found!")
+    else:
+        grades = students[name]
+        if grades:
+            avg = sum(grades) / len(grades)
+            print(f"\n{name}'s Grades: {grades}")
+            print(f"Average Grade: {int(avg)}")   # ✔ No decimals
+        else:
+            print(f"{name} has no grades yet.")
+
+def show_all_students():
+    if not students:
+        print("No students added yet.")
+        return
+
+    print("\n--- All Students & Grades ---")
+    for name, grades in students.items():
+        avg = sum(grades) / len(grades) if grades else 0
+        print(f"{name}: Grades={grades}, Average={int(avg)}")   # ✔ No decimals
+
+# Simple Menu
+while True:
+    print("\n--- Student Grade Tracker ---")
+    print("1. Add Student")
+    print("2. Add Grade")
+    print("3. Show Student Grades")
+    print("4. Show All Students")
+    print("5. Exit")
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        name = input("Enter student name: ")
+        add_student(name)
+
+    elif choice == "2":
+        name = input("Enter student name: ")
+        grade = int(input("Enter grade: "))
+        add_grade(name, grade)
+
+    elif choice == "3":
+        name = input("Enter student name: ")
+        show_student(name)
+
+    elif choice == "4":
+        show_all_students()
+
+    elif choice == "5":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
